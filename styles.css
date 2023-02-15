@@ -1,0 +1,38 @@
+.container {
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.title-center {
+    text-align: center;
+}
+
+.question{
+	font-weight: 600;
+}
+.answers {
+    margin-bottom: 20px;
+}
+
+#submit:hover{
+	background-color: #3a8;
+}
+
+.quiz-container{
+    position: relative;
+}
+
+.radio-choice {
+    margin: 0 10px 0 10px;
+}
+
+.list_container {
+    margin: 0 200px 0 200px;
+    padding: 10px;
+}
+
+li {
+    padding: 10px 0 10px 0;
+}

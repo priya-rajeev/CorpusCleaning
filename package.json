@@ -1,0 +1,34 @@
+{
+  "name": "corpuscleaning",
+  "version": "1.0.0",
+  "description": "This is a website built to help us clean our OEMCS (online English-Mandarin code-switching) corpus. This web interface lets participants verify our computationally segmented and tagged utterances.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/priya-rajeev/CorpusCleaning.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/priya-rajeev/CorpusCleaning/issues"
+  },
+  "homepage": "https://github.com/priya-rajeev/CorpusCleaning#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-fileupload": "^1.4.0",
+    "express-session": "^1.17.3",
+    "mongodb": "^5.0.0",
+    "mongoose": "^6.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
