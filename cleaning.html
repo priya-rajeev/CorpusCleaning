@@ -10,37 +10,47 @@
 
     <script type = "text/javascript" src='data_cleaning.js'></script>
 
-    <title>Corpus Cleaning</title>
+    <title>Linguistics Research</title>
   </head>
   <body>
 
     <div class="container">
-        <h1 class='title-center'>Corpus Cleaning</h1>
+        <h1 class='title-center'>Linguistics Research</h1>
     </div>
 
     <div class="container" id = "intro">
         <p>
          Now we will ask you to clean a total of ten text samples. Each sample may be anywhere from just one sentence to a few sentences long. 
-         The samples will consist of a mix of Mandarin and English words. For reference, please keep the part of speech table open in a tab (can be found at this 
-         <a style = " white-space:nowrap; " href='https://drive.google.com/file/d/13bOI94gSWzQF334UzLerzcX6KAsARWdT/view?usp=sharing'  target="_blank">link</a>).
+         The samples will consist of a mix of Mandarin and English words.
         </p>
     </div>
 
     <div class="list_container" id = "task_list_intro">
         <p>
-            For each text sample, we will ask you to do the following:
+            For each text sample, we will ask you to separate the sample into sentences, as done in the previous example.
+        </p>
+        <p>
+            Use the following rules:
         </p>
         <ol>
             <li class="list_item">
-                Separate the sample into sentences. This can be done by placing a period after every sentence. 
-                If there is the end of a sentence denoted by the 。character, please replace it with a . character. 
-                In addition, please do not use question marks, exclamation marks, or anything else to denote the end of a sentence.
+                Whenever you think a sentence ends, please place a double forward slash (\\) at the end of the sentence. 
             </li>
 
             <li class="list_item">
-                Identify the parts of speech in the sample. We will provide you with an approximate guess of the words and their parts of speech. 
-                Please verify that the words are separated correctly and they are assigned the correct part of speech. 
-                You can use the part of speech table provided for reference.
+                If the sentence is just a fragment, still place a double forward slash (\\) at the end of the sentence.
+            </li>
+
+            <li class="list_item">
+               Enclose all punctuation within the forward slashes. For example, if the sentence ends with an exclamation, place the double forward slash after the exclamation mark.
+            </li>
+
+            <li class="list_item">
+                If there is a list of steps or bullet points, segment each bullet point within its own sentence.
+             </li>
+
+            <li class="list_item">
+            If there are any hyperlinks, please remove them.
             </li>
         </ol>
     </div>
