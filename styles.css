@@ -28,6 +28,7 @@
 .form-group{
     width: 550px; 
     margin: 0 425px 0 425px;
+    padding: 20px;
 }
 
 .radio-choice {
@@ -41,4 +42,8 @@
 
 li {
     padding: 10px 0 10px 0;
+}
+
+#id_prompt {
+    padding: 10px 20px 10px 20px;
 }
