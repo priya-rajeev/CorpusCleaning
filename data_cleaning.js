@@ -7,13 +7,41 @@ function chooseRandom(arr, num) {
     return shuffled.slice(0, num);
 };
 
+//dynamically adjusts height of text areas
+function adjustHeight(inputField) {
+    inputField.style.height = "1px";
+    inputField.style.height = (25+inputField.scrollHeight)+"px";
+}
+
+//checks if any item in the list is null, returns false if there is a null
+function nullCheck(list) {
+    var check = true;
+    list.forEach(l => {
+        if (l.value == '') {
+            check = false;
+        }
+    })
+    return check;
+}
+
+function displayError() {
+    return '<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">' +
+        '<div class="toast-header">' +
+        '<img src="..." class="rounded mr-2" alt="...">' +
+        '<strong class="mr-auto">Bootstrap</strong>' + 
+        '<small>11 mins ago</small>' +
+        '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">' +
+            '<span aria-hidden="true">&times;</span>' +
+        '</button>' +
+        '</div>' +
+        '<div class="toast-body">' +
+        'Hello, world! This is a toast message.' +
+        '</div>' +
+  '</div>';
+}
+
 //fetches entries from the database
 async function getEntriesForReview() {
-    //     fetch('http://localhost:3000/api/getAll')
-    //     .then( res => res.json())
-    //     .then((data) => {
-    //         database = data;
-    //     });
     var db = await fetch('http://localhost:3000/api/getAll');
     db = await db.json();
     var entries = [];
@@ -26,14 +54,8 @@ async function getEntriesForReview() {
     return entries;
 }
 
-//dynamically adjusts height of text areas
-function adjustHeight(inputField) {
-    inputField.style.height = "1px";
-    inputField.style.height = (25+inputField.scrollHeight)+"px";
-}
-
-//posts data to the database
-function postData(sentences) {
+//updates data in the database
+function putData(sentences) {
     var text_areas = Array.from(document.getElementsByTagName("textarea"));
 
     //get id/name
@@ -51,8 +73,45 @@ function postData(sentences) {
         sentences[i]['reviewer_id'] = id.toString();
     }
 
-    //post to db
-    console.log('reviewed: ', sentences);
+    sentences.forEach(async s => {
+        id = s['_id']; //the text sample's id in the database
+        var url_post = 'http://localhost:3000/api/post/'
+        var url_del = 'http://localhost:3000/api/delete/'+id.toString(); //the url contains id
+
+        var str_body = JSON.stringify({
+            reviewer_id: s['reviewer_id'].toString(),
+            sentence_segmentation: s['sentence_segmentation'].toString(),
+            sentence: s['sentence'].toString(),
+            thread_id: s['thread_id'].toString()
+        });
+
+        var request_optns_post = {
+            method: 'POST',
+            body: str_body,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }        
+        };
+
+        var request_optns_del = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        };
+
+        //first delete original from database
+        var response_del = await fetch(url_del, request_optns_del);
+        var resp = await response_del.json();
+        console.log('deleted: ', resp);
+
+        //then post new response
+        var response_post = await fetch(url_post, request_optns_post);
+        resp = await response_post.json();
+        console.log('posted: ', resp);
+    });
 };
 
 //renders the page
@@ -74,7 +133,7 @@ async function getCleaningTask(seg_container) {
                         '<label for="reviewer_id">' +
                             '<strong> Please enter your ID number below: </strong>'+
                         '</label>'+
-                        '<textarea onkeyup="adjustHeight(this)" class="form-control" role="textbox" id="response_num_' +i+ '" rows="1"></textarea>'+
+                        '<textarea onkeyup="adjustHeight(this)" class="form-control" role="textbox" id="response_num_' +i+ '" rows="1" required="true"></textarea>'+
                     '</div>';
     output.push(id_prompt);
 
@@ -101,6 +160,18 @@ async function getCleaningTask(seg_container) {
 
     submit_btn = document.getElementById("sub_btn");
     submit_btn.onclick = function(){
-        postData(to_review);
+        var text_areas = Array.from(document.getElementsByTagName("textarea"));
+        segs = []
+        text_areas.forEach(ta => {
+            segs.push(ta);
+        });
+        console.log('segs: ', segs);
+        console.log('null check: ', nullCheck(text_areas));
+        if (nullCheck(text_areas)) {
+            putData(to_review);
+        } else {
+            //don't allow submission without a response for every text field
+            alert('Some required fields are not filled in!');
+        }
     };
 }

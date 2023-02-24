@@ -8,7 +8,8 @@ router.post('/post', async (req, res) => {
     const data = new Model({
         thread_id: req.body.thread_id,
         sentence: req.body.sentence,
-        pos: req.body.pos
+        reviewer_id: req.body.reviewer_id,
+        sentence_segmentation: req.body.sentence_segmentation
     })
 
     try {
@@ -47,13 +48,14 @@ router.patch('/update/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const updatedData = req.body;
-        const options = { new: true };
+        const options = { new: true,
+                          omitUndefined:true };
 
         const result = await Model.findByIdAndUpdate(
-            id, updatedData, options
+            id, {$set: updatedData}, options
         )
 
-        res.send(result)
+        res.send(result);
     }
     catch (error) {
         res.status(400).json({ message: error.message })
@@ -64,8 +66,8 @@ router.patch('/update/:id', async (req, res) => {
 router.delete('/delete/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        const data = await Model.findByIdAndDelete(id)
-        res.send(`Document with ${data.name} has been deleted..`)
+        const data = await Model.findByIdAndRemove(id);
+        res.send(JSON.stringify(`Document with ${data.name} has been deleted..`));
     }
     catch (error) {
         res.status(400).json({ message: error.message })

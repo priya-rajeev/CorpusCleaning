@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/priya-rajeev/CorpusCleaning#readme",
   "dependencies": {
+    "body-parser-ext": "^1.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
@@ -27,7 +28,8 @@
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
     "mongodb": "^5.0.0",
-    "mongoose": "^6.9.0"
+    "mongoose": "^6.9.0",
+    "node-fetch": "^3.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

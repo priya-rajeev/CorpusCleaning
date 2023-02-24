@@ -13,7 +13,7 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String
     },
-    sentence_seg: {
+    sentence_segmentation: {
         required: true,
         type: String
     }
