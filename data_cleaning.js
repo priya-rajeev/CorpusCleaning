@@ -24,22 +24,6 @@ function nullCheck(list) {
     return check;
 }
 
-function displayError() {
-    return '<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">' +
-        '<div class="toast-header">' +
-        '<img src="..." class="rounded mr-2" alt="...">' +
-        '<strong class="mr-auto">Bootstrap</strong>' + 
-        '<small>11 mins ago</small>' +
-        '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
-        '</button>' +
-        '</div>' +
-        '<div class="toast-body">' +
-        'Hello, world! This is a toast message.' +
-        '</div>' +
-  '</div>';
-}
-
 //fetches entries from the database
 async function getEntriesForReview() {
     var db = await fetch('http://localhost:3000/api/getAll');
@@ -153,8 +137,11 @@ async function getCleaningTask(seg_container) {
     var submit_btn = '<div class="container" id="check_button">' +
                         '<button id="sub_btn" type="button" class="btn btn-primary">Submit</button>' +
                     '</div>';
+
+    var cont_btn = '<div class="container" id="continue_button"></div>';
     
     output.push(submit_btn);
+    output.push(cont_btn);
     output.push('</form>');
     seg_container.innerHTML = output.join('');
 
@@ -169,6 +156,10 @@ async function getCleaningTask(seg_container) {
         console.log('null check: ', nullCheck(text_areas));
         if (nullCheck(text_areas)) {
             putData(to_review);
+
+            //allow users to finish page
+            cont_btn_container = document.getElementById("continue_button");
+            cont_btn_container.innerHTML = '<a id="cnt_btn" type="button" class="btn btn-success" href="finish_page.html">Continue</a>';
         } else {
             //don't allow submission without a response for every text field
             alert('Some required fields are not filled in!');
