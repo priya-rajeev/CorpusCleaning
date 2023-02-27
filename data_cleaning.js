@@ -59,8 +59,9 @@ function putData(sentences) {
 
     sentences.forEach(async s => {
         id = s['_id']; //the text sample's id in the database
-        var url_post = 'http://localhost:3000/api/post/'
-        var url_del = 'http://localhost:3000/api/delete/'+id.toString(); //the url contains id
+        var url_update = 'http://localhost:3000/api/update/'+id.toString();
+        // var url_post = 'http://localhost:3000/api/post/';
+        // var url_del = 'http://localhost:3000/api/delete/'+id.toString(); //the url contains id
 
         var str_body = JSON.stringify({
             reviewer_id: s['reviewer_id'].toString(),
@@ -69,8 +70,25 @@ function putData(sentences) {
             thread_id: s['thread_id'].toString()
         });
 
-        var request_optns_post = {
-            method: 'POST',
+        // var request_optns_post = {
+        //     method: 'POST',
+        //     body: str_body,
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     }        
+        // };
+
+        // var request_optns_del = {
+        //     method: 'DELETE',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Accept': 'application/json'
+        //     }
+        // };
+
+        var request_optns_update = {
+            method: 'PATCH',
             body: str_body,
             headers: {
                 'Content-Type': 'application/json',
@@ -78,23 +96,19 @@ function putData(sentences) {
             }        
         };
 
-        var request_optns_del = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        };
-
         //first delete original from database
-        var response_del = await fetch(url_del, request_optns_del);
-        var resp = await response_del.json();
-        console.log('deleted: ', resp);
+            // var response_del = await fetch(url_del, request_optns_del);
+            // var resp = await response_del.json();
+            // console.log('deleted: ', resp);
 
         //then post new response
-        var response_post = await fetch(url_post, request_optns_post);
-        resp = await response_post.json();
-        console.log('posted: ', resp);
+            // var response_post = await fetch(url_post, request_optns_post);
+            // resp = await response_post.json();
+            // console.log('posted: ', resp);
+
+        var response_update = await fetch(url_update, request_optns_update);
+        resp = await response_update.json();
+        console.log('updated: ', resp);
     });
 };
 
