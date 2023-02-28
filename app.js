@@ -29,4 +29,6 @@ database.once('connected', () => {
 })
 
 const routes = require('./routes/routes');
-app.use('/api', routes)
+app.use('/api', routes);
+app.use(express.static("src"));
+
