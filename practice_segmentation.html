@@ -11,10 +11,14 @@
     <title>Linguistics Research</title>
 
     <script>
-        function checkAnswer(corr, cont, check) {
+        function checkAnswer(corr, containers, continue_button, check) {
             check.onclick = function() {
-                corr.innerHTML = '<div class="quiz-container"> <div class="container"> <p>Correct answer: </p> </div> <div class="container"> <p>Today is a Monday, Monday the 1st to be precise. // I woke up early, so I am quite sleepy! // But anyways....how are you today? //</p> </div> </div>';
-                cont.innerHTML = '<a class="btn btn-success" href="cleaning.html" >Continue</a>';
+                for (var i = 0; i < corr.length; i++) {
+                    answer = corr[i];
+                    container = containers[i];
+                    container.innerHTML = '<div class="quiz-container"> <div class="container"> <p>Correct answer: ' + answer + '</p> </div> </div>';
+                }
+                continue_button.innerHTML = '<a class="btn btn-success" href="cleaning.html" >Continue</a>';
             }
         }
     </script>
@@ -27,14 +31,107 @@
 
     <div class="container" id = "intro">
         <p>
-            Whenever you think a sentence ends, please place a double vertical line (||) at the end of the sentence.
-            If there is any kind of punctuation (including but not limited to exclamation marks, question marks, Western periods, Mandarin periods, and ellipses), please include it within the sentence by placing the double bars after it. 
+            Please read the following rules carefully. These rules will apply to both the practice questions and the task you will be doing following the practice questions.
         </p>
      </div>
 
+
+
+    <div class="list_container" id = "task_list_intro">
+        <p>
+            <strong>Please carefully read the following rules:</strong>
+        </p>
+        <ol>
+            <li class="list_item">
+                Whenever you think a sentence ends, please place double vertical lines (||) at the end of the sentence. 
+                <br/><br/> &emsp;
+                <small>
+                    <u>For example:</u> 
+                    I walked to the store today. || I didn't buy anything, though. ||
+                </small>
+            </li>
+
+            <li class="list_item">
+                If there are any run-on sentences, please break them up to the best of your abilities. 
+                <br/><br/> &emsp;
+                <small>
+                    <u>For example:</u> 
+                    Has anyone else looked at the class homework yet || I have not and I don't know how to do it || if anyone has any tips let me know! ||
+                </small>
+                </li>
+
+            <li class="list_item">
+                If the sentence is just a fragment, still place double vertical lines (||) at the end of the sentence.
+                <br/><br/> &emsp;
+                <small>
+                    <u>For example:</u> 
+                    Checking out a book || 
+                </small>
+            </li>
+
+            <li class="list_item">
+               Enclose all punctuation within the double vertical lines.
+               <br/><br/> &emsp;
+               <small>
+                <u>For example:</u> 
+                I am really excited about the weather today! || It's so nice outside... ||
+               </small>
+            </li>
+
+            <li class="list_item">
+                If there is a list of steps or bullet points, segment each bullet point into its own sentence.
+                <br/><br/> &emsp;
+                <small>
+                    <u>For example, the following list:</u> 
+                    <br/>&emsp;&emsp;Things to do this weekend: 
+                    <br/>&emsp;&emsp;&nbsp; grocery shop 
+                    <br/>&emsp;&emsp;&nbsp; take a hike 
+                    <br/>&emsp;&emsp;&nbsp; go out to dinner
+                    <br/><br/>&emsp;
+                    <u>would become</u>
+                    <br/>&emsp;&emsp;
+                    Things to do this weekend: || grocery shop || take a hike || go out to dinner ||    
+                </small>
+              </li>
+
+            <li class="list_item">
+                If there are any hyperlinks or email addresses, please include them in their own sentence (there should be a set of vertical bars before and after the link/email). Do this even if doing so will break up a sentence. If the email address and the vertical bars before and after were to be removed, the sentence should still be segmented correctly.
+                <br/><br/> &emsp;
+                <small>
+                    <u>For example:</u> 
+                     For concerns about the job posting at || google.com ||, please email the recruiter at || recruiter@recruiter.com ||
+                </small>
+            </li>
+
+            <li class="list_item">
+                If there are any timestamps, please include them in their own sentence (there should be a set of vertical bars before and after the timestamp). Do this even if doing so will break up a sentence. If the timestamp and the vertical bars before and after were to be removed, the sentence should still be segmented correctly.
+                <br/><br/> &emsp;
+                <small>
+                    <u>For example:</u> 
+                    I received a scam call at || (2020-05-23 20:43 +8:00) ||, which is an odd time to call.
+                </small>
+            </li>
+
+            <li class="list_item">
+                If there are any emojis or emoticons, try to include them in whichever sentence seems closest to you.
+                <br/><br/> &emsp;
+                <small>
+                    <u>For example:</u> 
+                    I'm so happy :) || I ate some pancakes today! ||
+                </small>
+            </li>
+
+            <li class="list_item">
+                All in all, <strong>use your best judgement!</strong> There are no wrong or right answers :)
+            </li>
+        </ol>
+    </div>
+
+
+
     <div class="container" id = "quiz_intro">
         <p>
-            For example, here's a practice question:
+            Let's start with the following practice questions as a warm up. Click the submit button to see the right answer.
         </p>
     </div>
 
@@ -43,21 +140,49 @@
             <label for="practice_response">
                 <strong>Text: </strong> Today is a Monday, Monday the 1st to be precise. I woke up early, so I am quite sleepy! But anyways....how are you today?
             </label>
-            <textarea class="form-control" id="practice_response" rows="4"></textarea>
+            <textarea class="form-control" id="practice_response_1" rows="4"></textarea>
         </div>
+        <div class="container" id="correct_ans_1"></div>
+
+        <div class="form-group">
+            <label for="practice_response">
+                <strong>Text: </strong> Does anyone have any advice for applying to this job www.careers.com ? I think I would like to apply, and they give me the following location options:
+                <br/>&emsp;&emsp; San Fransisco  
+                <br/>&emsp;&emsp; Seattle 
+                <br/>&emsp;&emsp; Austin
+                <br/>&emsp;&emsp; New York
+                <br/> Thank you!
+            </label>
+            <textarea class="form-control" id="practice_response_2" rows="4"></textarea>
+        </div>
+        <div class="container" id="correct_ans_2"></div>
+
+        <div class="form-group">
+            <label for="practice_response">
+                <strong>Text: </strong> Yes, I went to the drive-in movie theater I watched that movie and it was so boring I may watch it again though
+            </label>
+            <textarea class="form-control" id="practice_response_3" rows="4"></textarea>
+        </div>
+        <div class="container" id="correct_ans_3"></div>
+
         <div class="container" id="check_button">
             <button id='check_btn' type="button" class="btn btn-primary">Check</button>
         </div>
-        <div class="container" id="correct_ans"></div>
         <div class="container" id="continue_button"></div>
     </form>
 
     <script>
-        var answer = 'Today is a Monday, Monday the 1st to be precise. || I woke up early, so I am quite sleepy! || But anyways....how are you today? ||';
-        var correct_ans = document.getElementById('correct_ans');
+        var answer_1 = 'Today is a Monday, Monday the 1st to be precise. || I woke up early, so I am quite sleepy! || But anyways....how are you today? ||';
+        var answer_2 = 'Does anyone have any advice for applying to this job || www.careers.com || ? || I think I would like to apply, and they give me the following location options: || San Fransisco || Seattle || Austin || New York || Thank you! ||'
+        var answer_3 = 'Yes, I went to the drive-in movie theater || I watched that movie and it was so boring || I may watch it again though ||';
+        var correct_ans_1 = document.getElementById('correct_ans_1');
+        var correct_ans_2 = document.getElementById('correct_ans_2');
+        var correct_ans_3 = document.getElementById('correct_ans_3');
         var continue_button = document.getElementById('continue_button');
         var check_button = document.getElementById('check_btn'); 
-        checkAnswer(correct_ans, continue_button, check_button);
+        answers_arr = [answer_1, answer_2, answer_3];
+        answers_container_arr = [correct_ans_1,correct_ans_2,correct_ans_3];
+        checkAnswer(answers_arr, answers_container_arr, continue_button, check_button);
     </script>
 
   </body>

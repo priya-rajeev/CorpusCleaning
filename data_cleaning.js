@@ -140,7 +140,7 @@ async function getCleaningTask(seg_container) {
         var curr_task = [];
         curr_task.push('<div class="form-group">' +
                             '<label for="sentence_num_'+i+'">' +
-                                '<strong>Text: </strong>' + to_review[i]['sentence']+
+                                '<strong>'+(i+1)+'.  </strong>' + to_review[i]['sentence']+
                             '</label>'+
                             '<textarea onkeyup="adjustHeight(this)" class="form-control" role="textbox" id="response_num_' +i+ '" rows="4"></textarea>'+
                         '</div>');

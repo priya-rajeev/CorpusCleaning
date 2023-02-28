@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended : true }));
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Server Started at ${3000}`)
 })
 
