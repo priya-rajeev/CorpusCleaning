@@ -16,7 +16,7 @@
                 for (var i = 0; i < corr.length; i++) {
                     answer = corr[i];
                     container = containers[i];
-                    container.innerHTML = '<div class="quiz-container"> <div class="container"> <p>Correct answer: ' + answer + '</p> </div> </div>';
+                    container.innerHTML = '<div class="quiz-container"> <div class="container"> <p style="color: #0a7505"> <u> Correct answer</u>:  ' + answer + '</p> </div> </div>';
                 }
                 continue_button.innerHTML = '<a class="btn btn-success" href="cleaning.html" >Continue</a>';
             }
@@ -103,14 +103,14 @@
                 </small>
             </li>
 
-            <li class="list_item">
+            <!-- <li class="list_item">
                 If there are any timestamps, please include them in their own sentence (there should be a set of vertical bars before and after the timestamp). Do this even if doing so will break up a sentence. If the timestamp and the vertical bars before and after were to be removed, the sentence should still be segmented correctly.
                 <br/><br/> &emsp;
                 <small>
                     <u>For example:</u> 
                     I received a scam call at || (2020-05-23 20:43 +8:00) ||, which is an odd time to call.
                 </small>
-            </li>
+            </li> -->
 
             <li class="list_item">
                 If there are any emojis or emoticons, try to include them in whichever sentence seems closest to you.

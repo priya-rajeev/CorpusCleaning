@@ -26,7 +26,7 @@ function nullCheck(list) {
 
 //fetches entries from the database
 async function getEntriesForReview() {
-    var db = await fetch('http://localhost:3000/api/getAll');
+    var db = await fetch('https://ling-research.adaptable.app/api/getAll');
     db = await db.json();
     var entries = [];
 
@@ -59,7 +59,7 @@ function putData(sentences) {
 
     sentences.forEach(async s => {
         id = s['_id']; //the text sample's id in the database
-        var url_update = 'http://localhost:3000/api/update/'+id.toString();
+        var url_update = 'https://ling-research.adaptable.app/api/update/'+id.toString();
         // var url_post = 'http://localhost:3000/api/post/';
         // var url_del = 'http://localhost:3000/api/delete/'+id.toString(); //the url contains id
 
@@ -119,7 +119,7 @@ async function getCleaningTask(seg_container) {
     entries = await getEntriesForReview();
     
     //randomly select 10 choices
-    to_review = chooseRandom(entries, 10);
+    to_review = chooseRandom(entries, 5);
     console.log('to review: ', to_review);
 
     //display 10 sentences
