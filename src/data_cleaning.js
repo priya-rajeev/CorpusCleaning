@@ -44,7 +44,7 @@ function putData(sentences) {
 
     //get id/name
     var id = text_areas.shift().value;
-    console.log('id number: ', id);
+    // console.log('id number: ', id);
 
     sentence_segmentations = [];
     //get sentence segmentations
@@ -108,7 +108,7 @@ function putData(sentences) {
 
         var response_update = await fetch(url_update, request_optns_update);
         resp = await response_update.json();
-        console.log('updated: ', resp);
+        // console.log('updated: ', resp);
     });
 };
 
@@ -120,7 +120,7 @@ async function getCleaningTask(seg_container) {
     
     //randomly select 10 choices
     to_review = chooseRandom(entries, 5);
-    console.log('to review: ', to_review);
+    // console.log('to review: ', to_review);
 
     //display 10 sentences
     var output = [];
@@ -140,7 +140,7 @@ async function getCleaningTask(seg_container) {
         var curr_task = [];
         curr_task.push('<div class="form-group">' +
                             '<label for="sentence_num_'+i+'">' +
-                                '<strong>'+(i+1)+'.  </strong>' + to_review[i]['sentence']+
+                                to_review[i]['sentence'] +
                             '</label>'+
                             '<textarea onkeyup="adjustHeight(this)" class="form-control" role="textbox" id="response_num_' +i+ '" rows="4"></textarea>'+
                         '</div>');
@@ -166,8 +166,8 @@ async function getCleaningTask(seg_container) {
         text_areas.forEach(ta => {
             segs.push(ta);
         });
-        console.log('segs: ', segs);
-        console.log('null check: ', nullCheck(text_areas));
+        // console.log('segs: ', segs);
+        // console.log('null check: ', nullCheck(text_areas));
         if (nullCheck(text_areas)) {
             putData(to_review);
 
