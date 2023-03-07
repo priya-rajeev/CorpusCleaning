@@ -20,6 +20,14 @@
         <h1 class='title-center'>Linguistics Research</h1>
     </div>
 
+    <script>
+        window.addEventListener('beforeunload', (event) => {
+            event.preventDefault();
+            event.returnValue = '';
+            console.log('');
+      });
+    </script>
+
     <div class="container" id = "intro">
         <p>
          Now we will ask you to clean a total of ten text samples. Each sample may be anywhere from just one sentence to a few sentences long. 
@@ -28,6 +36,8 @@
          For each text sample, we will ask you to separate the sample into sentences, as done in the previous example.
          <br/><br/>
          You can copy paste the text sample into the text area, then add in the vertical bars to segment the sentences.
+         <br/><br/>
+         Note that if you close the page without submitting, your results <b>will not be saved.</b>
         </p>
     </div>
 
@@ -37,7 +47,7 @@
         </p>
         <ol>
             <li class="list_item">
-                Whenever you think a sentence ends, please place double vertical lines (||) at the end of the sentence. 
+                Whenever you think a sentence ends, please place double vertical lines (||) at the <b>end</b> of the sentence. 
                 <br/><br/> &emsp;
                 <small>
                     <u>For example:</u> 
@@ -46,7 +56,7 @@
             </li>
 
             <li class="list_item">
-                If there are any run-on sentences, please break them up to the best of your abilities. 
+                If there are any run-on sentences, please break them up <b>to the best of your abilities.</b> 
                 <br/><br/> &emsp;
                 <small>
                     <u>For example:</u> 
@@ -64,7 +74,7 @@
             </li>
 
             <li class="list_item">
-               Enclose all punctuation within the double vertical lines.
+               Enclose all punctuation <b>within</b> the double vertical lines.
                <br/><br/> &emsp;
                <small>
                 <u>For example:</u> 
@@ -89,11 +99,14 @@
               </li>
 
             <li class="list_item">
-                If there are any hyperlinks or email addresses, please include them in their own sentence (there should be a set of vertical bars before and after the link/email). Do this even if doing so will break up a sentence. If the email address and the vertical bars before and after were to be removed, the sentence should still be segmented correctly.
+                If there are any hyperlinks or email addresses, please <b>remove them</b>. Do this even if doing so will break up a sentence. The rest of the sentence should be still segmented as one.
                 <br/><br/> &emsp;
                 <small>
-                    <u>For example:</u> 
-                     For concerns about the job posting at || google.com ||, please email the recruiter at || recruiter@recruiter.com ||
+                    <u>For example, the following example:</u> 
+                    <br/>&emsp;&emsp;For concerns about the job posting at google.com, please email the recruiter at recruiter@recruiter.com
+                    <br/><br/> &emsp;
+                    <u>would become:</u>
+                    <br/>&emsp;&emsp;For concerns about the job posting at , please email the recruiter at ||
                 </small>
             </li>
 
